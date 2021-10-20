@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_words/word.dart';
+import 'package:provider/provider.dart';
 
 class BottomSheetWidget extends StatefulWidget {
-  final Function(String id, String ar, String en) a;
-  const BottomSheetWidget(this.a, {Key? key}) : super(key: key);
+  const BottomSheetWidget({Key? key}) : super(key: key);
 
   @override
   State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
@@ -36,17 +37,17 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(22),
                 borderSide:
                     BorderSide(color: Theme.of(context).colorScheme.secondary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(22),
                 borderSide:
                     BorderSide(color: Theme.of(context).colorScheme.secondary),
               ),
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(22),
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.secondary)),
             ),
@@ -61,17 +62,17 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(22),
                 borderSide:
                     BorderSide(color: Theme.of(context).colorScheme.secondary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(22),
                 borderSide:
                     BorderSide(color: Theme.of(context).colorScheme.secondary),
               ),
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(22),
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.secondary)),
             ),
@@ -81,13 +82,14 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
           ),
           MaterialButton(
             onPressed: () {
-              widget.a(DateTime.now().toString(), arText.text, enText.text);
+              Provider.of<Words>(context, listen: false)
+                  .addWord(DateTime.now().toString(), arText.text, enText.text);
               arText.clear();
               enText.clear();
               Navigator.pop(context);
             },
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: const Text(
               'Add Zikr',
@@ -95,7 +97,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             ),
             color: Theme.of(context).primaryColor,
             minWidth: double.infinity,
-            height: 43,
+            height: 45,
           ),
         ],
       ),
