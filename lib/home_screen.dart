@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Word> _w = Provider.of<Words>(context).words;
+    List<Word> _words = Provider.of<Words>(context).words;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -44,13 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 10),
         child: ListView.separated(
           itemBuilder: (_, i) => ChangeNotifierProvider.value(
-            value: _w[i],
+            value: _words[i],
             child: const WordWidget(),
           ),
           separatorBuilder: (_, i) => const Divider(
             thickness: 2,
           ),
-          itemCount: _w.length,
+          itemCount: _words.length,
         ),
       ),
       floatingActionButton: FloatingActionButton(
